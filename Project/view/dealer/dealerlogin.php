@@ -1,6 +1,6 @@
 <?php
 	session_start();
-
+  include '../../controller/dealerController.php';
 ?>
 
 <html>
@@ -84,7 +84,7 @@
 
 
 
-<form method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']);?>">
+<form method="POST" action="">
         <fieldset>
         <legend style="color:cyan;"> <h1>Dealer Login</h1></legend>
 			<table>

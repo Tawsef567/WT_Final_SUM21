@@ -214,29 +214,34 @@ if (isset($_POST['Login']))
 	}
 
 	function Login()
-{
-	if(empty($_POST["username"])){
-			$err_uname="Username Required";
-			$hasError=true;
-		}else{
-			$uname=$_POST["username"];
-		}
-		if(empty($_POST["password"])){
-			$err_pass="Password Required";
-			$hasError=true;
-		}else{
-			$pass=$_POST["password"];
-		}
-		if(!$hasError){
-			
-			if(authenticateUser($_POST["username"],$_POST["password"])){
-				session_start();
+	{
+		if(empty($_POST["username"])){
+				$err_uname="Username Required";
+				$hasError=true;
+			}else{
+				$uname=$_POST["username"];
+			}
+			if(empty($_POST["password"])){
+				$err_pass="Password Required";
+				$hasError=true;
+			}else{
+				$pass=$_POST["password"];
+			}
+	
+			if($uname && $pass)
+			{
+				$loginsql = "select * from dealer where username='$uname'";
+				$result = execute($loginsql);
 				$_SESSION["loggeduser"] = $_POST["username"];
 				header("Location:dealer_dashboard.php");
 			}
-			$err_db = "Username password invalid";
-		}
-}
+			else
+			{
+				echo"login failed";
+			}
+	
+	
+	}
 
 function authenticateUser($uname,$pass){
 		$query ="select * from dealers where username='$uname' and password='$pass'";
