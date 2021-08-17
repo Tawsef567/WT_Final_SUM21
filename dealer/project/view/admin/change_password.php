@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 ?>
 <html>
     <body>
-    <?php include('dealer_dashboard.php')?>
+    <?php include('admin_dashboard.php')?>
     <fieldset>
         <p>Change Password</p><hr>
         <table>

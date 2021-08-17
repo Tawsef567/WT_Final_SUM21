@@ -1,6 +1,6 @@
 <html>
     <body>
-    <?php include('dealer_dashboard.php')?>
+    <?php include('admin_dashboard.php')?>
     <fieldset>
         <p>Manage Purchase</p><hr>
         <center>

@@ -1,8 +1,8 @@
 <html>
     <body>
-    <?php include('dealer_dashboard.php')?>
+    <?php include('admin_dashboard.php')?>
     <fieldset>
-        <center><h1>Manage Dealer</h1><hr></center>
+        <p>Manage Provider</p><hr>
         <center>
             <table class="content-table" border="2" width=65%;>
                 <thead>
@@ -14,6 +14,7 @@
                         <td align="center"> Phone </td>
                         <td align="center"> Address </td>
                         <td align="center"> DOB </td>
+                        
                     </tr>
                 </thead>
 
@@ -21,7 +22,7 @@
                     <?php
                         include '../dbcon.php';
 
-                        $selectquery = "select * from dealer";
+                        $selectquery = "select * from provider";
                         $query = mysqli_query($con,$selectquery);
                         $nums = mysqli_num_rows($query);
 
