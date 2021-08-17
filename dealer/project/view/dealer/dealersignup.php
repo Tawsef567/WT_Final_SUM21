@@ -1,5 +1,5 @@
 <?php
-	include '../Final Project/Dealer/Controller/dealerController.php';
+	include '../../controller/dealerController.php';
 ?>
 <html>
 <head>

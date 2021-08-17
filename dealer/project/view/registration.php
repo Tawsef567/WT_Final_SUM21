@@ -24,7 +24,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
       <ul class="navbar-nav mr-auto w-100 justify-content-end">
         <li class="nav-item active">
-          <a class="nav-link" href="../project/index.php">Home</a>
+          <a class="nav-link" href="../index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../project/view/carlist/carlist.php">Car List</a>

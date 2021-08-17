@@ -1,4 +1,5 @@
 <?php
+	require_once '../model/db_config.php';
 	$fullname="";
 	$err_fullname="";
 	$uname="";
@@ -19,7 +20,7 @@
 	
 	$hasError=false;
 	
-	
+
 	if($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 

@@ -101,10 +101,10 @@
 				</tr>
 
 			
-
+        <a href="dealer_dashboard.php">Login</a>
 				<tr>
 					<td><input type="submit" name="submit" value="Login"></td>
-          <a href="../Final Project/Dealer/View/dealer_dashboard.php">Login</a>
+          
 				</tr>
 			</table>
 			<label>Forget Password? <a href="forgetpassword.php">Password Reset</a> </label>
