@@ -34,58 +34,54 @@
     </div>
 </nav>
 
+
+<!-- Login System-->
 <?php
     
-    include 'dbcon.php';
-    if(isset($_POST['submit']))
-    {
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+      // include 'dbcon.php';
+      // if(isset($_POST['submit']))
+      // {
+      //   $username = $_POST['username'];
+      //   $password = $_POST['password'];
 
-      $username_search = "select * from dealer where username='$username'";
-      $query = mysqli_query($con,$username_search);
+      //   $username_search = "select * from dealer where username='$username'";
+      //   $query = mysqli_query($con,$username_search);
 
-      $username_count = mysqli_num_rows($query);
+      //   $username_count = mysqli_num_rows($query);
 
-      if($username_count)
-      {
-        $username_pass = mysqli_fetch_assoc($query);
+      //   if($username_count)
+      //   {
+      //     $username_pass = mysqli_fetch_assoc($query);
 
-        $db_pass = $username_pass['password'];
-        
-        $_SESSION['fullname'] = $username_pass['fullname'];
-        $_SESSION['userid'] = $username_pass['userid'];
-         
-        if($db_pass)
-        {
-          ?>
-                <script>
-                    alert("Login Complete!");
-                    </script>
-                    <?php
-                    header('location:dealer_dashboard.php');
-        }
-        else
-        {
-           ?>
-                <script>
-                    alert("Wrong password");
-                    </script>
-                    <?php
-        }
+      //     $db_pass = $username_pass['password'];
 
-      }
-      else
-      {
-        ?>
-                <script>
-                    alert("Invalid Username!");
-                    </script>
-                    <?php
-      }
-    }
+		  // $pass_decode = password_verify($password, $db_pass);
+          
+      //     $_SESSION['fullname'] = $username_pass['fullname'];
+      //     $_SESSION['userid'] = $username_pass['userid'];
+           
+      //     if($pass_decode)
+      //     {
+      //       	echo "Login complete";
+      //       	header('location: ../car management system/dealer_dashboard\dealer_dashboard.php');
+      //     }
+      //     else
+      //     {
+      //        echo "Wrong Password";
+      //     }
 
-  ?>
+      //   }
+      //   else
+      //   {
+      //     echo "Invalid username";
+      //   }
+      // }
+
+    ?>
+
+<!-- Login Code end-->
+
+
 
 
 <form method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']);?>">
@@ -103,8 +99,11 @@
 					<td align="right">Password</td>
 					<td>:<input name="password"  type="password" placeholder="Password""><br>
 				</tr>
+
+			
+        <a href="dealer_dashboard.php">Login</a>
 				<tr>
-					<td><input type="submit" name="submit" value="Login"></td>
+					<td><input type="submit" name="Login" value="Login"></td>
           
 				</tr>
 			</table>

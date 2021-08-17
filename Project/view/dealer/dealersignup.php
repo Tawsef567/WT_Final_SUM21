@@ -34,64 +34,66 @@
 </nav>
 
 <!-- Database Connection Start-->
-<?php
-
-include 'dbcon.php';
-
-if(isset($_POST['submit']))
-{
-  $fullname = mysqli_real_escape_string($con,$_POST['fullname']);
-  $username = mysqli_real_escape_string($con,$_POST['username']);
-  $password = mysqli_real_escape_string($con,$_POST['password']);
-  $repassword = mysqli_real_escape_string($con,$_POST['repassword']);
-  $email = mysqli_real_escape_string($con,$_POST['email']);
-  $phone = mysqli_real_escape_string($con,$_POST['phone']);
-  $address = mysqli_real_escape_string($con,$_POST['address']);
-  $dob = date('y-m-d', strtotime($_POST['date']));
-
-  $usernamequery = "select * from dealer where username='$username'";
-  $query = mysqli_query($con,$usernamequery);
-
-  $unamecount = mysqli_num_rows($query);
-
-  if($unamecount>0)
-  {
-    ?>
-      <script>
-      alert("Username has been Taken!");
-      </script>
-    <?php
-  }
-  else
-  {
-    if($password === $repassword)
+<!-- <?php
+    include 'dbcon.php';
+    if(isset($_POST['submit']))
     {
-      $insetquery = "insert into dealer(fullname, username, password, repassword, email, phone, address, dob) values('$fullname','$username','$password','$repassword', '$email', '$phone','$address','$dob')";
+      $fullname = mysqli_real_escape_string($con,$_POST['fullname']);
+      $username = mysqli_real_escape_string($con,$_POST['username']);
+      $email = mysqli_real_escape_string($con,$_POST['email']);
+      $password = mysqli_real_escape_string($con,$_POST['password']);
+      $repassword = mysqli_real_escape_string($con,$_POST['repassword']);
+      $phone = mysqli_escape_string($con,$_POST['phone']);
+      $dob = date('y-m-d', strtotime($_POST['date']));
+      $address = mysqli_escape_string($con,$_POST['address']);
 
-      $iquery = mysqli_query($con, $insetquery);
-      if($con)
-          {
-              ?>
-              <script>
-                  alert("Bingo! Registration complete! Go to Login Page");
-                  </script>
-                  <?php
-          }
-          else
-          {
-              ?>
-              <script>
-                  alert("Something Wrong! DO it again. Thank you");
-                  </script>
-                  <?php
-          }
-    }else{
-      echo "Password are not matching!";
+	  $pass = password_hash($password, PASSWORD_BCRYPT);
+	  $repass = password_hash($repassword, PASSWORD_BCRYPT);
+
+      $usernamequery = "select * from dealer where username='$username'";
+      $query = mysqli_query($con,$usernamequery);
+
+      $unamecount = mysqli_num_rows($query);
+
+      if($unamecount>0)
+      {
+        ?>
+          <script>
+          alert("Username has been Taken!");
+          </script>
+        <?php
+      }
+      else
+      {
+        if($password === $repassword)
+        {
+          $insetquery = "insert into dealer(username, fullname, email, password, repassword, phone, address, dob) values('$username','$fullname','$email','$pass','$repass', '$phone', '$address', '$dob')";
+
+          $iquery = mysqli_query($con, $insetquery);
+          if($con)
+              {
+                  ?>
+                  <script>
+                      alert("Registration complete! Go to Login Page");
+                      </script>
+                      <?php
+                       header('location:dealerlogin.php');
+              }
+              else
+              {
+                  ?>
+                  <script>
+                      alert("Something Wrong! DO it again. Thank you");
+                      </script>
+                      <?php
+              }
+        }else{
+          echo "Password are not matching!";
+        }
+      }
     }
-  }
-}
 
-?>
+?> -->
 
 
 <!-- Database End -->
@@ -111,13 +113,13 @@ if(isset($_POST['submit']))
 
 				<tr>
 					<td align="right">Username</td>
-					<td>:<input name="username" value="<?php echo $uname;?>" type="text"><br>
+					<td>:<input name="uname" value="<?php echo $uname;?>" type="text"><br>
 					<span style="color:red;"><?php echo $err_uname;?></span></td>
 				</tr>
 
 				<tr>
 					<td align="right">Password</td>
-					<td>:<input name="password" value="<?php echo $pass;?>" type="password"><br>
+					<td>:<input name="pass" value="<?php echo $pass;?>" type="password"><br>
 					<span style="color:red;"><?php echo $err_pass;?></span></td>
 				</tr>
 
@@ -144,12 +146,12 @@ if(isset($_POST['submit']))
 					<td>:<input name="address" value="<?php echo $address;?>" type="text" placeholder="Street Address"><br>
 					<span style="color:red;"><?php echo $err_address;?></span></td>
 				</tr>
-                    <tr>
+                    <!-- <tr>
                          <td align="right">DOB</td>
                          <td>: <input type="date" name="date" placeholder="dd/mm/yyyy"></td>
-                    </tr>
+                    </tr> -->
 				<tr>
-					<td><input type="submit" name="submit" value="Registration"></td>
+					<td><input type="submit" name="Registration" value="Registration"></td>
 				</tr>
 			</table>
             </fieldset>

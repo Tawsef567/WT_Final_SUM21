@@ -12,7 +12,7 @@
             </tr>
         </table>
         <fieldset>
-        <center> <h1>Welcome! <?php echo $_SESSION['fullname']; ?> Have a nice day.</h1></center>
+        <center> <h1>Welcome! <?php echo $_SESSION['loggeduser']; ?> Have a nice day.</h1></center>
         </fieldset>
         <fieldset>
             <b>DashBoeard:</b>
