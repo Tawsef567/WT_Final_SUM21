@@ -35,63 +35,61 @@
 
 <!-- Database Connection Start-->
 <?php
-    include 'dbcon.php';
-    if(isset($_POST['submit']))
+
+include 'dbcon.php';
+
+if(isset($_POST['submit']))
+{
+  $fullname = mysqli_real_escape_string($con,$_POST['fullname']);
+  $username = mysqli_real_escape_string($con,$_POST['username']);
+  $password = mysqli_real_escape_string($con,$_POST['password']);
+  $repassword = mysqli_real_escape_string($con,$_POST['repassword']);
+  $email = mysqli_real_escape_string($con,$_POST['email']);
+  $phone = mysqli_real_escape_string($con,$_POST['phone']);
+  $address = mysqli_real_escape_string($con,$_POST['address']);
+  $dob = date('y-m-d', strtotime($_POST['date']));
+
+  $usernamequery = "select * from dealer where username='$username'";
+  $query = mysqli_query($con,$usernamequery);
+
+  $unamecount = mysqli_num_rows($query);
+
+  if($unamecount>0)
+  {
+    ?>
+      <script>
+      alert("Username has been Taken!");
+      </script>
+    <?php
+  }
+  else
+  {
+    if($password === $repassword)
     {
-      $fullname = mysqli_real_escape_string($con,$_POST['fullname']);
-      $username = mysqli_real_escape_string($con,$_POST['username']);
-      $email = mysqli_real_escape_string($con,$_POST['email']);
-      $password = mysqli_real_escape_string($con,$_POST['password']);
-      $repassword = mysqli_real_escape_string($con,$_POST['repassword']);
-      $phone = mysqli_escape_string($con,$_POST['phone']);
-      $dob = date('y-m-d', strtotime($_POST['date']));
-      $address = mysqli_escape_string($con,$_POST['address']);
+      $insetquery = "insert into dealer(fullname, username, password, repassword, email, phone, address, dob) values('$fullname','$username','$password','$repassword', '$email', '$phone','$address','$dob')";
 
-	  $pass = password_hash($password, PASSWORD_BCRYPT);
-	  $repass = password_hash($repassword, PASSWORD_BCRYPT);
-
-      $usernamequery = "select * from dealer where username='$username'";
-      $query = mysqli_query($con,$usernamequery);
-
-      $unamecount = mysqli_num_rows($query);
-
-      if($unamecount>0)
-      {
-        ?>
-          <script>
-          alert("Username has been Taken!");
-          </script>
-        <?php
-      }
-      else
-      {
-        if($password === $repassword)
-        {
-          $insetquery = "insert into dealer(username, fullname, email, password, repassword, phone, address, dob) values('$username','$fullname','$email','$pass','$repass', '$phone', '$address', '$dob')";
-
-          $iquery = mysqli_query($con, $insetquery);
-          if($con)
-              {
-                  ?>
-                  <script>
-                      alert("Registration complete! Go to Login Page");
-                      </script>
-                      <?php
-                       header('location:dealerlogin.php');
-              }
-              else
-              {
-                  ?>
-                  <script>
-                      alert("Something Wrong! DO it again. Thank you");
-                      </script>
-                      <?php
-              }
-        }else{
-          echo "Password are not matching!";
-        }
-      }
+      $iquery = mysqli_query($con, $insetquery);
+      if($con)
+          {
+              ?>
+              <script>
+                  alert("Bingo! Registration complete! Go to Login Page");
+                  </script>
+                  <?php
+          }
+          else
+          {
+              ?>
+              <script>
+                  alert("Something Wrong! DO it again. Thank you");
+                  </script>
+                  <?php
+          }
+    }else{
+      echo "Password are not matching!";
     }
+  }
+}
 
 ?>
 

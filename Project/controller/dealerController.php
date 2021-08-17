@@ -1,5 +1,4 @@
 <?php
-	require_once '../model/db_config.php';
 	$fullname="";
 	$err_fullname="";
 	$uname="";
